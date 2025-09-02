@@ -1,0 +1,15 @@
+## --- OS
+.DS_Store
+__MACOSX
+.Spotlight-V100
+.fseventsd
+.Trashes
+Thumbs.db
+
+## --- oh-my-zsh plugins
+config/omzsh/plugins/fast-syntax-highlighting
+config/omzsh/plugins/zsh-autosuggestions
+config/omzsh/plugins/zsh-autosuggestions
+
+## --- misc
+___*

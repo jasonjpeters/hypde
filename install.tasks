@@ -1,0 +1,14 @@
+setup-prerequisites
+setup-requirements
+setup-sources
+
+install-groups
+install-packages
+install-hyprland
+install-sddm
+install-omzsh
+install-docker
+install-git
+install-webapps
+
+config-deploy
