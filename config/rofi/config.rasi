@@ -15,6 +15,7 @@ configuration {
 }
 
 @theme "~/.config/rofi/colors.rasi"
+@theme "~/.cache/hyprde/wallpaper/current.rasi"
 
 // Main //
 window {

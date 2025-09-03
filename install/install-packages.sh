@@ -48,6 +48,7 @@ task::run() {
         gvfs-smb
         hellwal
         htop
+        ImageMagick
         imv
         iwd
         jq
