@@ -13,6 +13,8 @@ task::run() {
         bluez-mesh
         bluez-tools
         brightnessctl
+        cascadia-code-nf-fonts
+        cascadia-mono-nf-fonts
         chromium-browser
         cups
         cups-browsed
@@ -74,6 +76,7 @@ task::run() {
         qt6-qtsvg
         quickshell
         ripgrep
+        rofi-wayland
         satty
         slurp
         sushi
@@ -87,12 +90,16 @@ task::run() {
         whois
         wireplumber
         wl-clipboard
+        xdg-desktop-menu
+        xdg-desktop-portal
+        xdg-user-dirs
+        xdg-utils
         xmlstarlet
         xournalpp
         zip
         zoxide
         zsh
     )
-
+    
     dnf_install "${pkgs[@]}"
 }

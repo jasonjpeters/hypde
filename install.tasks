@@ -12,3 +12,4 @@ install-git
 install-webapps
 
 config-deploy
+config-xdg

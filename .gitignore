@@ -9,7 +9,7 @@ Thumbs.db
 ## --- oh-my-zsh plugins
 config/omzsh/plugins/fast-syntax-highlighting
 config/omzsh/plugins/zsh-autosuggestions
-config/omzsh/plugins/zsh-autosuggestions
+config/omzsh/plugins/zsh-syntax-highlighting
 
 ## --- misc
 ___*

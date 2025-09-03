@@ -55,36 +55,6 @@ task::run() {
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
     )
-
+    
     dnf_install "${pkgs[@]}"
-
-    hyprpm update
-
-    ## --- Add hy3 plugin
-
-    noansi() { sed -r 's/\x1B\[[0-9;]*[mK]//g'; }   # strip ANSI colors
-
-    hy3_block() {
-    hyprpm list \
-        | noansi \
-        | sed -n '/Plugin[[:space:]]\+hy3\b/,/^[[:space:]]*$/p'
-    }
-
-    hy3_installed() { 
-        hyprpm list | noansi | grep -qiE '^Plugin[[:space:]]+hy3\b'
-    }
-
-    hy3_enabled() {
-        hy3_block | grep -qiE 'enabled[[:space:]]*:[[:space:]]*true'
-    }
-
-    if ! hy3_installed; then
-        log "hy3 not installed, adding…"
-        yes | hyprpm add https://github.com/outfoxxed/hy3 >/dev/null 2>&1 || true
-    fi
-
-    if ! hy3_enabled; then
-        log "hy3 installed but not enabled, enabling…"
-        hyprpm enable hy3 >/dev/null 2>&1 || true
-    fi    
 }
