@@ -86,6 +86,9 @@ task::run() {
         tree-sitter-cli
         unzip
         uwsm
+        vips
+        vips-magick
+        vips-tools
         wf-recorder
         wget
         whois

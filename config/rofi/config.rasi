@@ -1,3 +1,4 @@
+/* ---- Configuration ---- */
 configuration {
     modi:                       "drun,filebrowser,window,run";
     font:                       "Cascadia Code NF 9";
@@ -14,10 +15,13 @@ configuration {
     window-format:              "{w} · {c} · {t}";   
 }
 
-@theme "~/.config/rofi/colors.rasi"
-@theme "~/.cache/hyprde/wallpaper/current.rasi"
+@theme "~/.cache/hyprde/colors/colors.rasi"
+@import "~/.cache/hyprde/wallpaper/current.rasi"
 
-// Main //
+* { border-width: 2px; }
+* { border-radius: 2em; }
+
+// Main //2
 window {
     height:                      35em;
     width:                       56em;
@@ -27,8 +31,6 @@ window {
     cursor:                      "default";
     spacing:                     0em;
     padding:                     0em;
-    border:                      @border-width;
-    border-color:                @primary;
     border-radius:               @border-radius;
     background-color:            @background;
 }
@@ -59,14 +61,15 @@ mode-switcher {
     orientation:                 horizontal;
     width:                       6.6em;
     enabled:                     true;
-    padding:                     1.5em;
-    spacing:                     1.5em;
+    padding:                     0em;
+    spacing:                     1em;
     background-color:            transparent;
 }
 
 button {
-    padding:                     15px;
-    border-radius:               0.3em;
+    font:                        "Cascadia Code NF 18";
+    padding:                     5px 15px;
+    border-radius:               2em;
     border:                      0;    
     cursor:                      pointer;
     background-color:            @surface;
@@ -75,7 +78,7 @@ button {
 
 button selected {
     padding:                     15px;
-    border-radius:               0.3em; 
+    border-radius:               2em;    
     background-color:            @surface;
     text-color:                  @on-surface;
 }
@@ -85,7 +88,7 @@ inputbar {
     enabled:                     true;
     margin: 1em;
     children:                    [ "textbox-prompt-colon", "entry" ];
-    border-radius:               0.3em;
+    border-radius:               2em;
     background-color:            @surface;
 }
 
@@ -136,11 +139,12 @@ listview {
     text-color:                  @on-surface;
 }
 
+
 // Elements //
 element {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     0.5em;
+    padding:                     0.5em 1em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @on-surface;
@@ -149,7 +153,7 @@ element {
 element selected.normal {
     background-color:            @surface;
     text-color:                  @on-surface;
-    border-radius:               0.3em;
+    border-radius:               1em;
 }
 
 element normal.normal {
