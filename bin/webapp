@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+# --- globals & utils ---------------------------------------------------------
+SCRIPT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprde/lib"
+VERSION="0.1.0"
+
+die() {
+	printf 'error: %s\n' "$*" >&2
+	exit 1
+}
+log() { [ "${VERBOSE:-0}" = "1" ] && printf '[webapp] %s\n' "$*" >&2 || true; }
+
+usage() {
+	cat <<'USAGE'
+webapp <command> [options] [args]
+
+commands:
+	install <appname> <url> <icon-url>   Install a webapp entry
+	remove  <appname>                    Remove a webapp entry
+	list                                 List installed webapps
+	help                                 Show this help
+
+global options (before command):
+	-v, --verbose    Verbose logging
+	-y, --yes        Assume "yes" for prompts
+	-V, --version    Print version
+USAGE
+}
+
+# --- parse global flags -------------------------------------------------------
+YES=0
+VERBOSE=0
+while (($#)); do
+	case "${1:-}" in
+	-v | --verbose)
+		VERBOSE=1
+		shift
+		;;
+	-y | --yes)
+		YES=1
+		shift
+		;;
+	-V | --version)
+		printf '%s\n' "$VERSION"
+		exit 0
+		;;
+	-h | --help)
+		usage
+		exit 0
+		;;
+	--)
+		shift
+		break
+		;;
+	-*)
+		die "unknown global option: $1"
+		;;
+	*) break ;;
+	esac
+done
+
+# --- load command implementations --------------------------------------------
+# split implementations into a separate file (nice for organization/testing)
+# expects functions named: cmd_install, cmd_remove, cmd_list
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/webapp-install.sh"
+
+# --- dispatch ---------------------------------------------------------------
+cmd="${1:-help}"
+shift || true
+
+case "$cmd" in
+install)
+	# args: <appname> <url> <icon-url>
+	[[ $# -ge 3 ]] || die "usage: webapp install <appname> <url> <icon-url>"
+	webapp_install "$@"
+	;;
+# remove)
+# 	[[ $# -ge 1 ]] || die "usage: webapp remove <appname>"
+# 	webapp_remove "$@"
+# 	;;
+# list)
+# 	webapp_list "$@"
+# 	;;
+help | --help | -h)
+	usage
+	;;
+*)
+	die "unknown command: $cmd"
+	;;
+esac
